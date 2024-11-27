@@ -12,13 +12,13 @@ pipeline {
      
      stage('Build Dcoker Image') { 
         steps { 
-           sh 'sudo docker build -t simple-app .'
+           sh 'docker build -t simple-app .'
         }
       }
 
          stage("Deploy application") { 
          steps { 
-           sh 'sudo docker run -d -p 80:80 simple-app'
+           sh 'docker run -d -p 80:80 simple-app'
          }
 
      }
