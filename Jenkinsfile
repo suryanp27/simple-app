@@ -6,7 +6,7 @@ pipeline {
    
      stage('checkout') { 
         steps { 
-           git 'https://github.com/suryanp27/simple-app.git' 
+           git branch: 'main', url: 'https://github.com/suryanp27/simple-app.git' 
         }
      }
      
