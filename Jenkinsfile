@@ -1,45 +1,28 @@
-pipeline {
+pipeline { 
+  
+   agent any
 
-agent any
+   stages {
+   
+     stage('checkout') { 
+        steps { 
+           git 'https://github.com/suryanp27/simple-app.git' 
+        }
+     }
+     
+     stage('Test') { 
+        steps { 
+           sh 'echo "testing application..."'
+        }
+      }
 
-stages {
+         stage("Deploy application") { 
+         steps { 
+           sh 'echo "deploying application..."'
+         }
 
-stage('Clone Repository') {
+     }
+  
+   	}
 
-steps {
-
-git 'https://github.com/suryanp27/simple-app.git'
-
-}
-
-}
-
-stage('Run Tests') {
-
-steps {
-
-echo 'pytest tests/' // Replace 'tests/' with your test directory
-
-}
-
-}
-
-stage('Build Docker Image') {
-
-steps {
-
-echo 'docker build -t simple-app .'
-
-}
-
-}
-
-stage('Deploy') {
-
-steps {
-
-echo 'docker run -d -p 80:80 simple-app'
-
-}
-
-}
+   }
