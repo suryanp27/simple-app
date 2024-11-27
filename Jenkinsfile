@@ -10,15 +10,15 @@ pipeline {
         }
      }
      
-     stage('Test') { 
+     stage('Build Dcoker Image') { 
         steps { 
-           sh 'echo "testing application..."'
+           sh 'docker build -t simple-app .'
         }
       }
 
          stage("Deploy application") { 
          steps { 
-           sh 'echo "deploying application...on Dev"'
+           sh 'docker run -d -p 80:80 simple-app'
          }
 
      }
